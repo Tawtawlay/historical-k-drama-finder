@@ -41,7 +41,7 @@ body {
 	position: fixed;
 	z-index: 10;
 	top: 6rem;
-	left: max(24px, calc((100vw - 1440px) / 2));
+	left: 80px;
 	width: 220px;
 	max-height: calc(100vh - 7rem);
 	overflow-y: auto;
@@ -97,6 +97,34 @@ body {
 .filter-options {
 	display: grid;
 	gap: 0.5rem;
+}
+
+.filter-option[hidden] {
+	display: none;
+}
+
+.service-search {
+	margin-top: 0.75rem;
+	border-color: #d9ded9;
+	background-color: #fff;
+	color: #111613;
+	font-family: "Roboto", sans-serif;
+}
+
+.service-search:focus {
+	background-color: #fff;
+	color: #111613;
+}
+
+.service-search::placeholder {
+	color: #6c757d;
+}
+
+.service-search-empty {
+	margin: 0.5rem 0 0;
+	color: #aeb8b1;
+	font-family: "Roboto", sans-serif;
+	font-size: 0.75rem;
 }
 
 .filter-option {

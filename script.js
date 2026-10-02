@@ -21,6 +21,8 @@ const typeFilters = document.querySelectorAll("input[name='typeFilter']");
 const eraFilters = document.querySelectorAll("input[name='eraFilter']");
 const genreFilters = document.querySelectorAll("input[name='genreFilter']");
 const serviceFilters = document.querySelectorAll("input[name='serviceFilter']");
+const serviceSearch = document.querySelector("#serviceSearch");
+const serviceSearchEmpty = document.querySelector("#serviceSearchEmpty");
 const resultsCount = document.querySelector("#resultsCount");
 const searchForm = document.querySelector(".nav-search-form");
 
@@ -115,7 +117,22 @@ function selectedValues(checkboxes) {
     .map((checkbox) => checkbox.value);
 }
 
+function filterServices() {
+  const query = serviceSearch.value.trim().toLowerCase();
+  let visibleCount = 0;
+
+  serviceFilters.forEach((checkbox) => {
+    const option = checkbox.closest(".filter-option");
+    const isVisible = checkbox.checked || checkbox.value.toLowerCase().includes(query);
+    option.hidden = !isVisible;
+    visibleCount += Number(isVisible);
+  });
+
+  serviceSearchEmpty.hidden = visibleCount > 0;
+}
+
 titleSearch.addEventListener("input", renderTitles);
+serviceSearch.addEventListener("input", filterServices);
 [...typeFilters, ...eraFilters, ...genreFilters].forEach((checkbox) => {
   checkbox.addEventListener("change", renderTitles);
 });
